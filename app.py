@@ -113,7 +113,7 @@ def add_rewiew(id):
 
     sql = "INSERT INTO rewiews (text,book_id,score) VALUES (:rewiew_text,:book_id,:rewiew_score)"
     db.session.execute(sql, {"rewiew_text": rewiew_text,
-                             "book_id": 1, "rewiew_score": 4})
+                             "book_id": id, "rewiew_score": rewiew_score})
     db.session.commit()
 
 
