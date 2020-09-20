@@ -1,5 +1,5 @@
-# kirja-arvostelu-sovellus
-Tämä on Helsingin yliopiston Aineopintojen harjoitustyö: Tietokantasovellus (TKT 20011) kurssin harjoitustyö.
+﻿# kirja-arvostelu-sovellus
+**Tämä on Helsingin yliopiston Aineopintojen harjoitustyö: Tietokantasovellus (TKT 20011) kurssin harjoitustyö.**
 
 Tavoitteena on ottaa inspiraatiota esimerkkinä olleesta ravintola-arviot sovelluksesta sekä Steam – videopelien jakelualustasta. Tarkoituksena on siis luoda sovellus, jossa käyttäjät voivat arviodia kirjoja sekä etsiä kirjoja muiden käyttäjien arvioiden perusteella. 
 
@@ -21,5 +21,22 @@ Muita mahdollisia ominaisuuksia
 
     1. Mahdollisuus kommentoida ja arvioida muiden kirjoittamia arviointeja
     2. Käyttäjien profiileille pisteytys arvioitujen kirjojen määrän perusteella
-    3. Mahdollisuus kommentoida ja arvioida muiden kirjoittamia arviointeja
-    4. Amazon -verkkosivun käyttämä systeemi jossa käyttäjien tekstiarvosteluista nostetaan avainsanat
+    3. Amazon -verkkosivun käyttämä systeemi jossa käyttäjien tekstiarvosteluista nostetaan avainsanat
+
+
+---
+
+
+## Välipalautus 2
+
+Tämä palautus tuli hieman kiirellä joten osa sovelluksen ominaisuuksista on vielä välivaiheessa. Kuitenkin tämänhetkinen tilanne on pohja tulevia ominaisuuksia varten.
+
+Sovelluksella voi:
+
+	1. Luoda käyttäjä ja kirjautua sisään
+	2. Hakea kirjoja kirjan tai kirjailijan nimen perusteella
+	3. Lisää kommentti ja arvosana kirjaan
+
+Koodissa itsessään on kommentoitu näiden ominaisuuksien puutteita.
+
+Ohjelmaa voi testata luoamalla käyttäjätunnuksen sekä hakemalla kirjoja. Ainoat lisätyt kirjat ovat harry potter sarjaa.

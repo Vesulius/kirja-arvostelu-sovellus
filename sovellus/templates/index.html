@@ -1,0 +1,26 @@
+<!-- Tämä on nettisivun etusivu joka näyttää kirjautuneelle käyttäjälle hakukentän
+tai ei-kirjautuneelle kirjautumisvaihtoehdot -->
+
+<h1>Hyvät Lukemat</h1>
+{% if session.username %}
+<p>Olet kirjautunut nimellä {{ session.username }}</p>
+<h3>Hae kirjaa</h3>
+<form action="/search" method="POST">
+    <p>Hakusana</p>
+    <input type="searchterm" name="searchterm"></p>
+    <input type="checkbox" name="find" value="A"> Kirjailija
+    <input type="checkbox" name="find" value="B"> Kirjan nimi
+    <input type="submit" value="Hae">
+</form>
+<a href="/logout">Kirjaudu ulos</a>
+{% else %}
+<h3>Kirjaudu sisään</h3>
+<form action="/login" method="POST">
+    <p>Tunnus:<br>
+        <input type="text" name="username"></p>
+    <p>Salasana:<br>
+        <input type="password" name="password"></p>
+    <input type="submit" value="Kirjaudu">
+</form>
+<a href="/create_account"> Luo uudet käyttäjätunnukset</a>
+{% endif %}

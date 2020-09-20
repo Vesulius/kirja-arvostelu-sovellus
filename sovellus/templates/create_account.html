@@ -1,0 +1,13 @@
+<!-- Tässä tiedostossa kysytään käyttäjältä käyttäjänimeä ja salasanaa profiilin luomista varten. 
+Lisättävä ominaisuus on tarkistaa oikeanlainen salasana ja vapaa käyttäjätunnus. 
+Tämä voisi jatkaa index.html-tiedostoa-->
+
+<p>Ei tämännimistä käyttäjää, luodaanko uusi profiili?</p>
+<a href="/">Takaisin</a>
+<form action="/create_account" method="POST">
+    <input type="text" name="username">
+    <p>Salasana:<br>
+        <input type="password" name="password"></p>
+        <input type="hidden" value="none">
+    <input type="submit" value="Luo uusi käyttäjä">
+</form>
