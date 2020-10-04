@@ -13,7 +13,7 @@ def login(username, password):
 def get_id(username):
     sql = "SELECT id FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username": username})
-    return result.fetchone()[0]
+    return int(result.fetchone()[0])
 
 
 # Tämä funktio lisää uuden profiilin tietokantaan
@@ -32,13 +32,17 @@ def register(username, password):
     db.session.commit()
 
 
-    users.start_session(username)
+    start_session(get_id(username))
     return True
 
 
 # Tämä funktio poistaa profiilin sekä kaikki siihen liittyvät kommentit
 def delete_account(id):
     sql = "DELETE FROM reviews WHERE user_id=:id"
+    db.session.execute(sql, {"id": id})
+    db.session.commit()
+
+    sql = "DELETE FROM user_logs WHERE user_id=:id"
     db.session.execute(sql, {"id": id})
     db.session.commit()
     

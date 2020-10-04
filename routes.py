@@ -41,7 +41,7 @@ def login():
         hash_value = user[0]
         if check_password_hash(hash_value, password):
             session["username"] = username
-            users.start_session(users.get_id(username))
+            users.start_session(users.get_id(session.get("username")))
             return render_template("index.html")
         else:
             # Tämä pitää korvaa virheilmoituksella index.html-tiedoston omalla virheilmoituksella
@@ -68,7 +68,7 @@ def create():
 
         if users.register(username, password):
             session["username"] = username
-            users.start_session(users.get_id(username))
+            users.start_session(users.get_id(session.get("username")))
             return render_template("index.html")
         else:
             return render_template("create_account.html")
