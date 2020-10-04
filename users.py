@@ -30,14 +30,14 @@ def register(username, password):
     sql = "INSERT INTO users (username,password) VALUES (:username,:password)"
     db.session.execute(sql, {"username": username, "password": hash_value})
     db.session.commit()
-
-
     start_session(get_id(username))
     return True
 
 
 # Tämä funktio poistaa profiilin sekä kaikki siihen liittyvät kommentit
 def delete_account(id):
+    if privileges(id):
+        return False
     sql = "DELETE FROM reviews WHERE user_id=:id"
     db.session.execute(sql, {"id": id})
     db.session.commit()

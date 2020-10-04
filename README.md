@@ -41,3 +41,23 @@ Koodissa itsessään on kommentoitu näiden ominaisuuksien puutteita.
 
 Ohjelmaa voi testata luoamalla käyttäjätunnuksen sekä hakemalla kirjoja. Ainoat lisätyt kirjat ovat harry potter sarjaa.
 Sivustolle pääsee osoitteesta https://tsoha-book-rewiew.herokuapp.com.
+
+
+---
+
+
+## Välipalautus 3
+
+Tässä palautuksessa paranneltiin toimintoja ja selkeytettiin nettisivulla selaamista.
+
+Uudet ominaisuudet ovat:
+
+    1. Käyttäjillä on oma profiilisivu johon pääsee etusivun yläosan linkistä 'Käyttäjän session.username profiili'
+    2. Profiilisivulla näkyy omat arviot ja niiden määrä. Tällä sivulla voi poistaa arvioita sekä profiili.
+    3. Jos on kirjautunut admin-käyttäjänä, niin profiilisivulla voi myös lisää kirjoja
+    4. Admin käyttäjänä voi myös poistaa kirjoja hakemalla niitä yleisestä hausta
+
+Ohjelmaa voi testata luoamalla käyttäjätunnuksen sekä hakemalla kirjoja. Ainoat lisätyt kirjat ovat harry potter sarjaa.
+Sivustolle pääsee osoitteesta https://tsoha-book-rewiew.herokuapp.com. 
+
+Admin-profiilin käyttäjätunnus on 'harryfani2000' ja salasana 'harry2000'. Tätä käyttäjää ei pysty poistaa että kokeile vaan.

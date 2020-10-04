@@ -79,7 +79,8 @@ def create():
 # Tämä funkito poistaa profiileja ja niihin littyvät kommentit
 @app.route("/delete_profile")
 def delete_profile():
-    users.delete_account(users.get_id(session.get("username")))
+    if not users.delete_account(users.get_id(session.get("username"))):
+        return render_template("error.html", message="Adminkäyttäjää ei voi poistaa!")
     del session["username"]
     return redirect("/")
 
@@ -111,7 +112,7 @@ def search():
     # Luodaan uusi viesti jos haku ei tuota tulosta
     if not found_books:
         message = "Haullesi ei löytynyt tuloksia :("
-    if users.privileges(users.get_id(session.get("username"))):
+    if session.get("username", None) != None and users.privileges(users.get_id(session.get("username"))):
         return render_template("delete_book.html", books=found_books, message=message)
     return render_template("search_results.html", books=found_books, message=message)
 
