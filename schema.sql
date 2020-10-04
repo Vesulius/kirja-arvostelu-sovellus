@@ -1,4 +1,4 @@
 CREATE TABLE books (id SERIAL PRIMARY KEY, name TEXT, length INTEGER, publication_year INTEGER, author TEXT);
-CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT, password TEXT, privileges INTEGER);
+CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT, password TEXT, privileges INTEGER DEFAULT 1);
 CREATE TABLE reviews (id SERIAL PRIMARY KEY, text TEXT, book_id INTEGER REFERENCES books, time TIMESTAMP DEFAULT NOW(), score INTEGER);
 CREATE TABLE user_logs (id SERIAL PRIMARY KEY, user_id INTEGER REFERENCES users, log TIMESTAMP DEFAULT NOW());
