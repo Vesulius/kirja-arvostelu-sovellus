@@ -40,3 +40,4 @@ Sovelluksella voi:
 Koodissa itsessään on kommentoitu näiden ominaisuuksien puutteita.
 
 Ohjelmaa voi testata luoamalla käyttäjätunnuksen sekä hakemalla kirjoja. Ainoat lisätyt kirjat ovat harry potter sarjaa.
+Sivustolle pääsee osoitteesta https://tsoha-book-rewiew.herokuapp.com.
