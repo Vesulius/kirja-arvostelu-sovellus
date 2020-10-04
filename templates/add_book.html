@@ -1,0 +1,18 @@
+<!-- Tämä sivu näytetään vain admin profiileille, tämän avulla voidaan lisää kirjoja -->
+{% extends "profile.html" %}
+{% block content %}
+<h3>Hei admin, lisää kirja tästä</h3>
+<hr>
+<h4>{{ message }}</h4>
+<form action="/add_book" method="POST">
+    <p>Kirjan nimi:<br>
+        <input type="text" name="name"></p>
+    <p>Sivumäärä:<br>
+        <input type="number" name="length"></p>
+    <p>Julkaisuvuosi:<br>
+        <input type="number" name="publication_year"></p>
+    <p>Kirjailija:<br>
+        <input type="text" name="author"></p>
+    <input type="submit" value="submit">
+</form>
+{% endblock %}

@@ -1,8 +1,9 @@
 <!-- Tämä tiedosto näyttää haun tulokset
 Lisättäviä ominaisuuksia on haun tarkennus ja erikseen tiettyjen hakujen tekeminen esim sivumäärän mukaan -->
-
+{{message}}
 <hr>
 {% for book in books %}
-<a href="/display_rewiews/{{ book[0] }}">{{book[1]}}, {{book[2]}} sivua</a>
+<a href="/display_reviews/{{ book[0] }}">{{book[1]}}, {{book[2]}} sivua</a>
 <hr>
 {% endfor %}
+<a href="/">Takaisin</a>

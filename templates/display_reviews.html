@@ -1,0 +1,64 @@
+<!-- Tämä tiedosto näyttää kirjan tiedot ja siitä tehdyt arvioinnit.
+Tähän lisättävää on hakea paremmin arviointeja 
+sekä pystyä järjestämään niitä pituuden tai arvosanan perusteella -->
+<!doctype html>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<title>Hyvät lukemat</title>
+<div class="container">
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <a class="navbar-brand" href="#">By Vesulius</a>
+        <ul class="navbar-nav">
+            {% if session.username %}
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Kirjaudu ulos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/profile">Olet kirjautunut sisään käyttäjällä {{session.username}}</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="/login_page">Kirjaudu sisään jotta voit kirjoittaa arvion</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="/">Etusivulle</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="row">
+        <div class="col-8">
+            <h2>{{book[1]}}</h2>
+            <hr>
+            <p>
+                Kirjailija: <em>{{book[4]}}</em> <br>
+                Sivumäärä:<em>{{book[2]}} </em><br>
+                Julkaisuvuosi: <em>{{book[3]}}</em><br>
+                Aviointien keskiarvo: <em>{{book[6]}}</em>
+            </p>
+            <hr>
+            <ul>
+                {% for review in reviews %}
+                Luotu: {{ review[1].strftime("%Y-%m-%d %H:%M:%S") }} <br>
+                Arviointi: {{ review[2] }} <br>
+                Lähettäjä: {{ review[3] }} <br>
+                {{review[0]}}
+                <hr>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-4">
+            {% if session.username %}
+            <form action="/add_review/{{ book[0] }}" method="POST">
+                <h4>Lisää arviointi:</h4> <br>
+                    Arviointi:<br>
+                    <textarea name="review_text" rows="10" cols="30"></textarea> <br>
+                    Kirjoita numero yhden ja kymmenen väliltä.<br>
+                    <input type="number" name="review_score" min="1" max="10"><br>
+                    <input type="submit" value="Lähetä">
+                </p>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>

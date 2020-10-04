@@ -1,0 +1,9 @@
+<!-- Tämä sivu näytetään vain admin profiileille, tässä sivussa voidaan poistaa kirjoja -->
+<h3>Hei admin, poista kirja tästä</h3>
+<hr>
+{% for book in books %}
+<a href="/display_reviews/{{ book[0] }}">{{book[1]}}, {{book[2]}} sivua</a> <br>
+<a href="/delete_book/{{ book[0] }}">Poista</a>
+<hr>
+{% endfor %}
+<a href="/">Takaisin</a>

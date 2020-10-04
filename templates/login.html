@@ -1,0 +1,16 @@
+<!-- Tämä on nettisivun etusivu joka näyttää kirjautuneelle käyttäjälle hakukentän
+tai ei-kirjautuneelle kirjautumisvaihtoehdot -->
+
+
+<h3>Kirjaudu sisään</h3>
+<hr>
+<form action="/login" method="POST">
+    <p>Tunnus:<br>
+        <input type="text" name="username"></p>
+    <p>Salasana:<br>
+        <input type="password" name="password"></p>
+    <input type="submit" value="Kirjaudu">
+</form>
+<hr>
+<a href="/create_account"> Luo uudet käyttäjätunnukset</a> <br><br>
+<a href="/"> Etusivulle</a>

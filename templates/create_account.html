@@ -2,12 +2,22 @@
 Lisättävä ominaisuus on tarkistaa oikeanlainen salasana ja vapaa käyttäjätunnus. 
 Tämä voisi jatkaa index.html-tiedostoa-->
 
-<p>Ei tämännimistä käyttäjää, luodaanko uusi profiili?</p>
-<a href="/">Takaisin</a>
-<form action="/create_account" method="POST">
+<h3>Ei tämännimistä käyttäjää, luodaanko uusi profiili?</h3>
+<form action="/create_account" method="POST" onsubmit="return check(this)">
     <input type="text" name="username">
     <p>Salasana:<br>
         <input type="password" name="password"></p>
-        <input type="hidden" value="none">
+    <input type="hidden" value="none">
     <input type="submit" value="Luo uusi käyttäjä">
 </form>
+<a href="/login_page">Takaisin</a>
+
+<script>
+    function check(form) {
+        if (form.password.length < 4 || form.password.length > 20) {
+            alert("Salasanan tulee olla 4-20 merkkiä pitkä!");
+            return false;
+        }
+        return true;
+    }
+</script>

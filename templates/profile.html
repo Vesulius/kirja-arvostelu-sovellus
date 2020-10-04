@@ -1,0 +1,45 @@
+<!--Tämä sivu näyttää käyttäjän profiilin ja siitä tehdyt kommentit joita voi myös poistaa-->
+<!doctype html>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<title>Hyvät lukemat/profiili</title>
+<div class="container">
+  <nav class="navbar navbar-expand-sm navbar-light">
+    <a class="navbar-brand" href="#">By Vesulius</a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Etusivulle</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Kirjaudu ulos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/delete_profile">Poista profiili</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="row">
+    <div class="col-8">
+      <h1>Porfiili</h1>
+      <hr>
+      {% if reviews_count == 0 %}
+      Et ole vielä kirjoittanut yhtään arvostelua
+      {% else %}
+      <p>Olet kirjoittanut {{ reviews_count }} arvostelua</p>
+      {% endif %}
+      <ul>
+        {% for review in reviews %}
+        Kirjan nimi: {{review[3]}} <br>
+        Luotu: {{ review[1].strftime("%Y-%m-%d %H:%M:%S") }} <br>
+        Arviointi: {{review[2]}} <br>
+        <a href="/delete_review/{{ review[4] }}">Poista arvio</a>
+        <hr>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-4">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+</div>
