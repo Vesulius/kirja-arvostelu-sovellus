@@ -2,6 +2,7 @@
 Tähän lisättävää on hakea paremmin arviointeja 
 sekä pystyä järjestämään niitä pituuden tai arvosanan perusteella -->
 <!doctype html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -43,11 +44,16 @@ sekä pystyä järjestämään niitä pituuden tai arvosanan perusteella -->
             <hr>
             <ul>
                 {% for review in reviews %}
-                Luotu: {{ review[1].strftime("%Y-%m-%d %H:%M:%S") }} <br>
-                Arviointi: {{ review[2] }} <br>
-                Lähettäjä: {{ review[3] }} <br>
-                {{ review[0] }}
-                <hr>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ review[3] }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Luotu: {{ review[1].strftime("%Y-%m-%d %H:%M:%S") }}
+                        </h6>
+                        <h6 class="card-subtitle mb-2 text-muted"> Arviointi: {{ review[2] }}</h6>
+                        <p class="card-text">{{ review[0] }}</p>
+                    </div>
+                </div>
+                <br>
                 {% endfor %}
             </ul>
         </div>
@@ -55,12 +61,20 @@ sekä pystyä järjestämään niitä pituuden tai arvosanan perusteella -->
             {% if session.username %}
             <form action="/add_review/{{ book[0] }}" method="POST">
                 <h4>Lisää arviointi:</h4> <br>
-                    Arviointi:<br>
-                    <textarea name="review_text" rows="10" cols="30" required></textarea> <br>
-                    Kirjoita numero yhden ja kymmenen väliltä.<br>
-                    <input type="number" name="review_score" min="1" max="10" required>
-                    <input type="submit" class="btn btn-primary" value="Lähetä">
+                <!--Lisätään viesti jos arvio lisättiin onnistuneesti-->
+                {% if review_add %}
+                <div class="alert alert-success" role="alert">
+                    <p>Arvio lisätty!</p>
+                </div>
+                <br>
+                {% endif %}
+                Arviointi:<br>
+                <textarea name="review_text" rows="10" cols="30" required></textarea> <br>
+                Kirjoita numero yhden ja kymmenen väliltä.<br>
+                <input type="number" name="review_score" min="1" max="10" required>
+                <input type="submit" class="btn btn-primary" value="Lähetä">
             </form>
+
             {% endif %}
         </div>
     </div>

@@ -138,7 +138,7 @@ def add_review(id):
     if (review_score > 10) or (review_score < 1):
         return render_template("error.html", message="Virheellinen arvio")
     reviews.add_review(id, review_text, review_score, session_username)
-    return render_template("display_reviews.html", id=id, reviews=reviews.select_reviews(id), book=books.search_id(id))
+    return render_template("display_reviews.html", id=id, reviews=reviews.select_reviews(id), book=books.search_id(id), review_add=True)
 
 
 # Tämä funktio vastaa arvioiniten poistamisesta
@@ -169,7 +169,7 @@ def add_book():
             return render_template("error.html", message="Sä et ole admin??")
 
         books.add_book(name, length, publication_year, author)
-        return render_template("add_book.html", message="Lisätty")
+        return render_template("add_book.html", message="Lisätty", last_log=users.last_log(id))
 
 
 # Tämä funktio vastaa kirjojen poistamisesta, tarkastetaan myös profiilin oikeudet
