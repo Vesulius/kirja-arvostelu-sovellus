@@ -1,23 +1,16 @@
 <!-- Tässä tiedostossa kysytään käyttäjältä käyttäjänimeä ja salasanaa profiilin luomista varten. 
 Lisättävä ominaisuus on tarkistaa oikeanlainen salasana ja vapaa käyttäjätunnus. 
 Tämä voisi jatkaa index.html-tiedostoa-->
-
-<h3>Ei tämännimistä käyttäjää, luodaanko uusi profiili?</h3>
-<form action="/create_account" method="POST" onsubmit="return check(this)">
-    <input type="text" name="username">
-    <p>Salasana:<br>
-        <input type="password" name="password"></p>
-    <input type="hidden" value="none">
-    <input type="submit" value="Luo uusi käyttäjä">
+{% extends "login.html" %}
+{% block content %}
+<h3>{{ message }} </h3>
+<form action="/create_account" method="POST">
+    <p>käyttäjänimi:</p>
+    <input type="text" name="username" maxlength="10">
+    <p>Salasana:</p>
+    <input type="password" name="password"><br>
+    <input type="submit" class="btn btn-primary" value="Luo uusi käyttäjä"><br>
 </form>
+<hr>
 <a href="/login_page">Takaisin</a>
-
-<script>
-    function check(form) {
-        if (form.password.length < 4 || form.password.length > 20) {
-            alert("Salasanan tulee olla 4-20 merkkiä pitkä!");
-            return false;
-        }
-        return true;
-    }
-</script>
+{% endblock %}

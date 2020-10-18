@@ -1,18 +1,20 @@
 <!--Tämä sivu on sivuston etusivu josta linkit muille sivuille. Lisäksi tästä voi hakea kirjoja-->
 <!doctype html>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
 <title>Hyvät lukemat</title>
 <div class="container">
     <nav class="navbar navbar-expand-sm navbar-light">
-        <a class="navbar-brand" href="#">By Vesulius</a>
+        <a class="navbar-brand" href="https://github.com/Vesulius/kirja-arvostelu-sovellus">By Vesulius</a>
         <ul class="navbar-nav">
             {% if session.username %}
             <li class="nav-item">
                 <a class="nav-link" href="/logout">Kirjaudu ulos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/profile">Käyttäjän {{session.username}} profiili</a>
+                <a class="nav-link" href="/profile">Käyttäjän {{ session.username }} profiili</a>
             </li>
             {% else %}
             <li class="nav-item">
@@ -27,8 +29,10 @@
             <p>Tällä voit löytää uusia kirjoja sekä kirjoittaa niistä arvosteluja</p>
             <form action="/search" method="POST">
                 <p>Hakusana</p>
-                <input type="searchterm" name="searchterm">
-                <input type="submit" value="Hae">
+                <div class="active-cyan-3 active-cyan-4 mb-4">
+                    <input class="form-control" type="text" name="searchterm" placeholder="Search" aria-label="Search">
+                </div>
+                <input type="submit" class="btn btn-primary" value="Hae">
             </form>
         </div>
     </div>

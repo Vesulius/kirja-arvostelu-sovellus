@@ -45,7 +45,7 @@ def login():
             return render_template("index.html")
         else:
             # Tämä pitää korvaa virheilmoituksella index.html-tiedoston omalla virheilmoituksella
-            return render_template("error.html", message="Väärä käyttäjätunnus tai salasana")
+            return render_template("login.html", message="Väärä käyttäjätunnus tai salasana")
 
 
 # Tämä funktio kirjauttaa käyttäjän ulos
@@ -63,8 +63,8 @@ def create():
         password = request.form["password"]
 
         # Vielä viimeinen tarkistus onko salasana oikean pituinen
-        if len(password) < 4 or len(password) > 20:
-            return render_template("error.html", message="Huono salasana")
+        if len(password) < 4:
+            return render_template("create_account.html", message="Salasanan tulee olla vähintään neljä merkkiä")
 
         if users.register(username, password):
             session["username"] = username
@@ -73,7 +73,7 @@ def create():
         else:
             return render_template("create_account.html")
     else:
-        return render_template("create_account.html")
+        return render_template("create_account.html", message="Luo uusi käyttäjä")
 
 
 # Tämä funkito poistaa profiileja ja niihin littyvät kommentit
@@ -81,6 +81,7 @@ def create():
 def delete_profile():
     if not users.delete_account(users.get_id(session.get("username"))):
         return render_template("error.html", message="Adminkäyttäjää ei voi poistaa!")
+
     del session["username"]
     return redirect("/")
 
@@ -88,16 +89,18 @@ def delete_profile():
 # Tämä funktio lataa sisäänkirjautumis-sivun
 @app.route("/profile")
 def profile():
-    user_reviews = reviews.select_reviews_user_id(users.get_id(session.get("username")))
+    user_id = users.get_id(session.get("username"))
+    user_reviews = reviews.select_reviews_user_id(user_id)
     if not user_reviews:
         reviews_count = 0
+        last_log = 0
     else:
         reviews_count = user_reviews[0][5]
 
     # Ladataan eri sivu jos käyttäjä on admin
     if users.privileges(users.get_id(session.get("username"))):
         return render_template("add_book.html", reviews=user_reviews, reviews_count=reviews_count)
-    return render_template("profile.html", reviews=user_reviews, reviews_count=reviews_count)
+    return render_template("profile.html", reviews=user_reviews, reviews_count=reviews_count, last_log=users.last_log(user_id))
 
 
 # Tämä funktio vastaa hakutominaisuudesta
@@ -113,7 +116,7 @@ def search():
     if not found_books:
         message = "Haullesi ei löytynyt tuloksia :("
     if session.get("username", None) != None and users.privileges(users.get_id(session.get("username"))):
-        return render_template("delete_book.html", books=found_books, message=message)
+        return render_template("delete_book.html", books=found_books, message="Hei admin, poista kirja tästä")
     return render_template("search_results.html", books=found_books, message=message)
 
 
@@ -134,7 +137,6 @@ def add_review(id):
     # Tarkistetaan vielä onko arvosana oikein
     if (review_score > 10) or (review_score < 1):
         return render_template("error.html", message="Virheellinen arvio")
-
     reviews.add_review(id, review_text, review_score, session_username)
     return render_template("display_reviews.html", id=id, reviews=reviews.select_reviews(id), book=books.search_id(id))
 
@@ -144,12 +146,11 @@ def add_review(id):
 def delete_review(id):
     reviews.delete_review(id)
     user_reviews = reviews.select_reviews_user_id(users.get_id(session.get("username")))
-
     # Tarkistetaan sisälsikö vastaus tuloksia
     if not user_reviews:
-        return render_template("profile.html", reviews=user_reviews, reviews_count=0)
+        return render_template("profile.html", reviews=user_reviews, reviews_count=0, last_log=users.last_log(id))
     else:
-        return render_template("profile.html", reviews=user_reviews, reviews_count=user_reviews[0][5])
+        return render_template("profile.html", reviews=user_reviews, reviews_count=user_reviews[0][5], last_log=users.last_log(id))
 
 
 # Tämä funktio vastaa kirjojen lisäämisestä
@@ -177,7 +178,4 @@ def delete_book(id):
     if users.privileges:
         books.delete_book(id)
         return render_template("index.html")
-
     return render_template("error.html", message="Sä et oo admin bro!")
-
-    

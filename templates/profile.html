@@ -5,7 +5,7 @@
 <title>Hyvät lukemat/profiili</title>
 <div class="container">
   <nav class="navbar navbar-expand-sm navbar-light">
-    <a class="navbar-brand" href="#">By Vesulius</a>
+    <a class="navbar-brand" href="https://github.com/Vesulius/kirja-arvostelu-sovellus">By Vesulius</a>
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="/">Etusivulle</a>
@@ -27,11 +27,12 @@
       {% else %}
       <p>Olet kirjoittanut {{ reviews_count }} arvostelua</p>
       {% endif %}
+      <p>{{ last_log }}</p>
       <ul>
         {% for review in reviews %}
-        Kirjan nimi: {{review[3]}} <br>
+        Kirjan nimi: {{ review[3] }} <br>
         Luotu: {{ review[1].strftime("%Y-%m-%d %H:%M:%S") }} <br>
-        Arviointi: {{review[2]}} <br>
+        Arviointi: {{ review[2] }} <br>
         <a href="/delete_review/{{ review[4] }}">Poista arvio</a>
         <hr>
         {% endfor %}

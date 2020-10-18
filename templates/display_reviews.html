@@ -2,12 +2,14 @@
 Tähän lisättävää on hakea paremmin arviointeja 
 sekä pystyä järjestämään niitä pituuden tai arvosanan perusteella -->
 <!doctype html>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
 <title>Hyvät lukemat/kirja</title>
 <div class="container">
     <nav class="navbar navbar-expand-sm navbar-light">
-        <a class="navbar-brand" href="#">By Vesulius</a>
+        <a class="navbar-brand" href="https://github.com/Vesulius/kirja-arvostelu-sovellus">By Vesulius</a>
         <ul class="navbar-nav">
             {% if session.username %}
             <li class="nav-item">
@@ -28,13 +30,15 @@ sekä pystyä järjestämään niitä pituuden tai arvosanan perusteella -->
     </nav>
     <div class="row">
         <div class="col-8">
-            <h2>{{book[1]}}</h2>
+            <h2>{{ book[1] }}</h2>
             <hr>
             <p>
-                Kirjailija: <em>{{book[4]}}</em> <br>
-                Sivumäärä:<em>{{book[2]}} </em><br>
-                Julkaisuvuosi: <em>{{book[3]}}</em><br>
-                Aviointien keskiarvo: <em>{{book[6]}}</em>
+                Kirjailija: <em>{{ book[4] }}</em> <br>
+                Sivumäärä: <em>{{ book[2] }} </em><br>
+                Julkaisuvuosi: <em>{{ book[3] }}</em><br>
+                {% if book[5] %}
+                Aviointien keskiarvo: <em>{{ book[5] }}</em>
+                {% endif %}
             </p>
             <hr>
             <ul>
@@ -42,7 +46,7 @@ sekä pystyä järjestämään niitä pituuden tai arvosanan perusteella -->
                 Luotu: {{ review[1].strftime("%Y-%m-%d %H:%M:%S") }} <br>
                 Arviointi: {{ review[2] }} <br>
                 Lähettäjä: {{ review[3] }} <br>
-                {{review[0]}}
+                {{ review[0] }}
                 <hr>
                 {% endfor %}
             </ul>
@@ -52,11 +56,10 @@ sekä pystyä järjestämään niitä pituuden tai arvosanan perusteella -->
             <form action="/add_review/{{ book[0] }}" method="POST">
                 <h4>Lisää arviointi:</h4> <br>
                     Arviointi:<br>
-                    <textarea name="review_text" rows="10" cols="30"></textarea> <br>
+                    <textarea name="review_text" rows="10" cols="30" required></textarea> <br>
                     Kirjoita numero yhden ja kymmenen väliltä.<br>
-                    <input type="number" name="review_score" min="1" max="10"><br>
-                    <input type="submit" value="Lähetä">
-                </p>
+                    <input type="number" name="review_score" min="1" max="10" required>
+                    <input type="submit" class="btn btn-primary" value="Lähetä">
             </form>
             {% endif %}
         </div>

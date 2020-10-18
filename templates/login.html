@@ -1,16 +1,29 @@
 <!-- Tämä on nettisivun etusivu joka näyttää kirjautuneelle käyttäjälle hakukentän
 tai ei-kirjautuneelle kirjautumisvaihtoehdot -->
-
-
-<h3>Kirjaudu sisään</h3>
-<hr>
-<form action="/login" method="POST">
-    <p>Tunnus:<br>
-        <input type="text" name="username"></p>
-    <p>Salasana:<br>
-        <input type="password" name="password"></p>
-    <input type="submit" value="Kirjaudu">
-</form>
-<hr>
-<a href="/create_account"> Luo uudet käyttäjätunnukset</a> <br><br>
-<a href="/"> Etusivulle</a>
+<!doctype html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<div class="container">
+    <div class="row justify-contetnt.center">
+        <div class="col-4">
+            {% block content %}
+            <h3>Kirjaudu sisään</h3>
+            <hr>
+            {{ message }}
+            <form action="/login" method="POST">
+                <p>Tunnus:<br>
+                    <input type="text" name="username"></p>
+                <p>Salasana:<br>
+                    <input type="password" name="password"></p>
+                <input type="submit" class="btn btn-primary" value="Kirjaudu">
+            </form>
+            <hr>
+            <a href="/create_account"> Luo uudet käyttäjätunnukset</a> 
+            {% endblock %}
+            <br>
+            <a href="/"> Etusivulle</a>
+        </div>
+    </div>
+</div>
