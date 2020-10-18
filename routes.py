@@ -144,13 +144,14 @@ def add_review(id):
 # Tämä funktio vastaa arvioiniten poistamisesta
 @app.route("/delete_review/<int:id>", methods=["POST", "GET"])
 def delete_review(id):
+    user_id = users.get_id(session.get("username"))
     reviews.delete_review(id)
-    user_reviews = reviews.select_reviews_user_id(users.get_id(session.get("username")))
+    user_reviews = reviews.select_reviews_user_id(user_id)
     # Tarkistetaan sisälsikö vastaus tuloksia
     if not user_reviews:
-        return render_template("profile.html", reviews=user_reviews, reviews_count=0, last_log=users.last_log(id))
+        return render_template("profile.html", reviews=user_reviews, reviews_count=0, last_log=users.last_log(user_id))
     else:
-        return render_template("profile.html", reviews=user_reviews, reviews_count=user_reviews[0][5], last_log=users.last_log(id))
+        return render_template("profile.html", reviews=user_reviews, reviews_count=user_reviews[0][5], last_log=users.last_log(user_id))
 
 
 # Tämä funktio vastaa kirjojen lisäämisestä

@@ -31,7 +31,7 @@
       <p>Olet kirjoittanut {{ reviews_count }} arvostelua</p>
       {% endif %}
       {% if last_log %}
-      <p>Viime kirjautuminen: {{ last_log }}</p>
+      <p>Viime kirjautuminen: {{ last_log.strftime("%Y-%m-%d %H:%M:%S") }}</p>
       {% endif %}
       <hr>
       <ul>

@@ -39,7 +39,7 @@ def last_log(id):
     result = db.session.execute(sql, {"id": id})
     if not result:
         return False
-    return result.fetchone()[0].strftime("%Y-%m-%d %H:%M:%S")
+    return result.fetchone()[0]
 
 # Tämä funktio poistaa profiilin sekä kaikki siihen liittyvät kommentit
 def delete_account(id):
