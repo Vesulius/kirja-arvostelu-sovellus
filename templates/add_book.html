@@ -1,5 +1,8 @@
 <!-- Tämä sivu näytetään vain admin profiileille, tämän avulla voidaan lisää kirjoja -->
 {% extends "profile.html" %}
+{% block notadmin %}
+<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Admin profiilia ei voi poistaa</a>
+{% endblock %}
 {% block content %}
 <h3>Hei admin, lisää kirja tästä</h3>
 <hr>
