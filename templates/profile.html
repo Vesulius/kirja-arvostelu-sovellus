@@ -19,12 +19,7 @@
         <a class="nav-link" class="btn btn-danger" href="/delete_profile">Poista profiili</a>
         {% endblock %}
       </li>
-      
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
   </nav>
   <div class="row">
     <div class="col-8">
@@ -35,7 +30,10 @@
       {% else %}
       <p>Olet kirjoittanut {{ reviews_count }} arvostelua</p>
       {% endif %}
-      <p>{{ last_log }}</p>
+      {% if last_log %}
+      <p>Viime kirjautuminen: {{ last_log.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+      {% endif %}
+      <hr>
       <ul>
         {% for review in reviews %}
         Kirjan nimi: {{ review[3] }} <br>

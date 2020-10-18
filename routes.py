@@ -36,7 +36,7 @@ def login():
     user = users.login(username, password)
 
     if user == None:
-        return render_template("create_account.html")
+        return render_template("login.html", message="Ei tämänimistä profiilia")
     else:
         hash_value = user[0]
         if check_password_hash(hash_value, password):
@@ -71,7 +71,7 @@ def create():
             users.start_session(users.get_id(session.get("username")))
             return render_template("index.html")
         else:
-            return render_template("create_account.html")
+            return render_template("create_account.html", message="Käyttäjänimi otettu")
     else:
         return render_template("create_account.html", message="Luo uusi käyttäjä")
 

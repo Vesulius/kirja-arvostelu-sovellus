@@ -10,13 +10,17 @@ tai ei-kirjautuneelle kirjautumisvaihtoehdot -->
         <div class="col-4">
             {% block content %}
             <h3>Kirjaudu sisään</h3>
+            {% if message %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+            {% endif %}
             <hr>
-            {{ message }}
             <form action="/login" method="POST">
                 <p>Tunnus:<br>
-                    <input type="text" name="username"></p>
+                <input type="text" name="username"></p>
                 <p>Salasana:<br>
-                    <input type="password" name="password"></p>
+                <input type="password" name="password"></p>
                 <input type="submit" class="btn btn-primary" value="Kirjaudu">
             </form>
             <hr>

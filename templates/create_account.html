@@ -4,11 +4,12 @@ Tämä voisi jatkaa index.html-tiedostoa-->
 {% extends "login.html" %}
 {% block content %}
 <h3>{{ message }} </h3>
+<hr>
 <form action="/create_account" method="POST">
-    <p>käyttäjänimi:</p>
-    <input type="text" name="username" maxlength="10">
-    <p>Salasana:</p>
-    <input type="password" name="password"><br>
+    <p>käyttäjänimi:<br>
+    <input type="text" name="username" maxlength="10"></p>
+    <p>Salasana:<br>
+    <input type="password" name="password"></p>
     <input type="submit" class="btn btn-primary" value="Luo uusi käyttäjä"><br>
 </form>
 <hr>

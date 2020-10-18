@@ -61,3 +61,18 @@ Ohjelmaa voi testata luoamalla käyttäjätunnuksen sekä hakemalla kirjoja. Ain
 Sivustolle pääsee osoitteesta https://tsoha-book-rewiew.herokuapp.com. 
 
 Admin-profiilin käyttäjätunnus on 'harryfani2000' ja salasana 'harry2000'. Tätä käyttäjää ei pysty poistaa että kokeile vaan.
+
+
+---
+
+
+## Viimeinen palautus
+
+Tässä palautuksessa viimeisteltiin sivun ulkonäköä ja paikattiin pieniä virheilmoituksa. Ulkoasua paranneltiin käyttämällä Bootstrap-kirjastoa
+joka olikin jo käytössä etu- ja profiilisivulla. 
+
+Ohjelmaa voi testata luoamalla käyttäjätunnuksen sekä hakemalla kirjoja. Ainoat lisätyt kirjat ovat harry potter sarjaa.
+Sivustolle pääsee osoitteesta https://tsoha-book-rewiew.herokuapp.com. 
+
+Admin-profiilin käyttäjätunnus on 'harryfani2000' ja salasana 'harry2000'. Tätä käyttäjää ei pysty poistaa että kokeile vaan.
+

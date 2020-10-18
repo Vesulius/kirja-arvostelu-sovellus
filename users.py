@@ -37,6 +37,8 @@ def register(username, password):
 def last_log(id):
     sql = "SELECT log FROM user_logs WHERE user_id=:id ORDER BY log LIMIT 1 OFFSET 1"
     result = db.session.execute(sql, {"id": id})
+    if not result:
+        return False
     return result.fetchone()[0]
 
 # Tämä funktio poistaa profiilin sekä kaikki siihen liittyvät kommentit
